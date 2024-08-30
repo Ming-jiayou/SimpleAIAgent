@@ -71,15 +71,11 @@ namespace SimpleTranslationAIAgent
                 IConfiguration configuration = builder.Build();
 
                 // 直接从配置中读取复杂类型
-                ChatAIOption openAIOption = configuration.GetSection("ChatAI").Get<ChatAIOption>();
-                EmbeddingOption embeddingOption = configuration.GetSection("Embedding").Get<EmbeddingOption>();
-                TextChunkerOption textChunkerOption = configuration.GetSection("TextChunker").Get<TextChunkerOption>();
+                ChatAIOption openAIOption = configuration.GetSection("ChatAI").Get<ChatAIOption>();            
             
 
                 // 注册配置对象到依赖注入容器
-                services.AddSingleton(openAIOption);
-                services.AddSingleton(embeddingOption);
-                services.AddSingleton(textChunkerOption);
+                services.AddSingleton(openAIOption);            
 
             }).Build();
 
