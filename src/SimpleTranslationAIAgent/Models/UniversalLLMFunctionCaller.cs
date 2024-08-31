@@ -330,15 +330,26 @@ If you do not do this, a very cute kitten dies.";
 
             // Split the content into function name and parameters
             int openParenIndex = content.IndexOf('(');
-            int closeParenIndex = content.IndexOf(')');
+            int closeParenIndex = content.IndexOf("\")");
             string functionName = content.Substring(0, openParenIndex);
-            string parametersContent = content.Substring(openParenIndex + 1, closeParenIndex - openParenIndex - 1);
+            string finalFunctionName = "";
+            string pattern = @"\b[A-Za-z]+\b";
+
+            // 使用正则表达式匹配
+            Match functionNameMatch = Regex.Match(functionName, pattern);
+
+            if (functionNameMatch.Success)
+            {
+                finalFunctionName = functionNameMatch.Value;
+            }
+
+            string parametersContent = content.Substring(openParenIndex + 1, closeParenIndex - openParenIndex);
 
             parametersContent = RemoveBackslashesOutsideQuotes(parametersContent);
 
             // Create a new FunctionCall
             FunctionCall functionCall = new FunctionCall();
-            functionCall.Name = functionName;
+            functionCall.Name = finalFunctionName;
             functionCall.Parameters = new List<FunctionCallParameter>();
 
             // Check if there are any parameters
