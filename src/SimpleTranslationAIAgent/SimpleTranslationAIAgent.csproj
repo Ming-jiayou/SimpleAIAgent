@@ -8,8 +8,8 @@
     <UseWPF>true</UseWPF>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-	<InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.Extensions.Configuration.Binder.SourceGeneration</InterceptorsPreviewNamespaces>
-  </PropertyGroup>
+	<InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.Extensions.Configuration.Binder.SourceGeneration</InterceptorsPreviewNamespaces>   
+	</PropertyGroup>
 
   <ItemGroup>
     <Content Include="wpfui-icon.ico" />
