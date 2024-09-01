@@ -1,195 +1,124 @@
+[简体中文](./README.zh.md) | English
+
 # SimpleTranslationAIAgent
 
-## 基于C#与LLM通过简单对话即可实现文件到文件的翻译任务
+## Based on C# and LLM, a file-to-file translation task can be achieved through simple dialogue.✨
 
-该软件是MIT协议完全开源免费的，但是调用LLM的API可能需要费用，但是没关系，赛博菩萨硅基流动与智谱AI等都有免费的模型可调了。
+This software is completely open-source and free under the MIT license. However, calling the LLM API may incur costs. But don't worry, there are now free models available for use, such as those from SiliconCloud, and Zhipu AI.
 
-这个Translation AI Agent只是一个简单的AI Agent示例应用，可能很多人都不需要它。
+This Translation AI Agent is just a simple example application of an AI Agent, and many people may not need it. The main reason for open-sourcing it is to allow those who are interested to study the source code and use C# plus LLM to build their own unique AI Agent applications that are more interesting and can improve their own work efficiency!!
 
-开源出来主要是为了感兴趣的同学可以在看源码之后，也可以使用C#+LLM构建出更有意思更能提高自己工作效率的自己专属的AI Agent应用！！
+You can choose an appropriate model based on the complexity of your self-built AI Agent application. For simpler applications, free models may suffice, but for more complex ones, you might require a stronger model. Nowadays, almost all platforms offer some tokens for free trial, so you can give them a try first.
 
-可以根据自己构建的AI Agent应用的复杂度，选择合适的模型。当应用比较简单时，可能免费的模型就可以了，但是当应用比较复杂时，可能需要更强的模型才行了。现在各大平台几乎都有送一些token体验，可以先拿这些token试一试。
+Now GLM-4-Flash is free, and after testing, it can complete some simple AI Agent tasks.
 
-现在glm-4-flash免费了，经过测试可以完成一些简单的AI Agent任务。
-
-首先来一个简单的任务，将内容翻译完之后，自动写入一个文件：
+First, a simple task: after translating the content, automatically write it into a file:
 
 ![image-20240830164931643](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830164931643.png)
 
-![image-20240830165003575](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830165003575.png)
-
-创建了这个文件，并将内容写入了：
+Created this file and wrote the content into it:
 
 ![image-20240901115707800](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240901115707800.png)
 
-整个过程录屏看看：
+Check the entire recording of the screen:
 
 ![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/TranslationAIAgent1.gif)
 
-md文件也是可以的：
+MD files are also acceptable:
 
 ![image-20240830165653037](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830165653037.png)
 
 ![image-20240830165717751](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830165717751.png)
 
-录屏看下整个过程：
+Capture the entire process on screen:
 
 ![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/TranslationAIAgent2.gif)
 
-现在尝试一下更难的任务，将一个文件里的文本取出来翻译之后写入另一个文本。
-
-比如我有一个test1.txt文件，如下所示：
+For instance, I have a file named test1.txt as follows:
 
 ![image-20240830170813739](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830170813739.png)
 
-我想要让Translation AI Agent 帮我翻译成中文，然后存入另一个文件中，如果不存在这个文件就新建一个文件，就可以这么写，只要提供文件路径即可：
+Translate the text above into English and save it to another file. If the file does not exist, create a new one.
 
 ![image-20240830171542144](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830171542144.png)
 
-失败了：
-
-![image-20240830172736359](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830172736359.png)
-
-换成更强的glm-4模型试试：
-
-![image-20240830172933040](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830172933040.png)
-
-成功完成这个任务了：
+The task has been successfully completed:
 
 ![image-20240830173048479](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830173048479.png)
 
-现在试一下将这个文件：
+## Quick Start🚀
 
-![image-20240830180636766](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830180636766.png)
+GitHub Address: https://github.com/Ming-jiayou/SimpleTranslationAIAgent
 
-翻译成英文之后写入另一个文件：
-
-![image-20240830174100940](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830174100940.png)
-
-查看效果：
-
-![image-20240830174157728](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830174157728.png)
-
-自动省略了...
-
-可以调试看看这个过程。
-
-第一步先获取文件的内容：
-
-![image-20240830175134230](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175134230.png)
-
-成功获取到文件内容：
-
-![image-20240830175207798](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175207798.png)
-
-第二步出错了：
-
-![image-20240830175246128](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175246128.png)
-
-我该用硅基流动提供的Qwen/Qwen2-72B-Instruct再试试：
-
-![image-20240830175603881](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175603881.png)
-
-现在没错了。
-
-成功获取翻译结果：
-
-![image-20240830175648519](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175648519.png)
-
-第三步，将翻译之后的结果写入文件：
-
-![image-20240830175745941](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175745941.png)
-
-已成功写入：
-
-![image-20240830175809502](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175809502.png)
-
-第四步，返回完成信息：
-
-![image-20240830175845567](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175845567.png)
-
-![image-20240830175910947](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175910947.png)
-
-查看效果：
-
-![image-20240830180006034](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830180006034.png)
-
-如果一个模型返回出错，可以重试，重试不行就可以换个模型试试了，越强的模型，成功的几率越高。
-
-## 快速开始🚀
-
-GitHub地址：https://github.com/Ming-jiayou/SimpleTranslationAIAgent
-
-注意到这里有个Releases：
+Noticed there is a 'Releases' here:
 
 ![image-20240831114112502](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240831114112502.png)
 
-点击，有两个压缩包：
+Click, there are two zip files: 
 
-![image-20240831114150976](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240831114150976.png)
+![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240831114112502.png)
 
-一个依赖.net8.0-windows框架，一个独立。
+One depends on the .NET 8.0-windows framework, and the other is standalone. 
 
-安装了.net8.0-windows框架的就可以选体积小的那个，我已经安装了.net8.0-windows框架就选择体积小的那一个，点击就在下载了，下载之后解压缩，如下所示：
+If you have installed the .NET 8.0-windows framework, you can choose the smaller one. I have already installed the .NET 8.0-windows framework, so I selected the smaller one, clicked to start the download, and after downloading, extract it as shown:
 
 ![image-20240831114515700](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240831114515700.png)
 
-现在只要打开appsettings填入你的API KEY即可使用，非常简单！！
+Now, just open appsettings and enter your API KEY to use it, very simple!! 
 
-打开appsettings.json文件如下所示：
+Open the appsettings.json file as follows: 
 
 ![image-20240831114609377](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240831114609377.png)
 
-填入之后，点击SimpleTranslationAIAgent.exe即可运行：
+After entering the information, click on SimpleTranslationAIAgent.exe to run: 
 
-![image-20240831114749577](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240831114749577.png)
+![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240831114609377.png)
 
-测试是否配置成功：
+Test whether the configuration is successful: 
 
-![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240831114836888.png)
+![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240831114609377.png)
 
-配置已经成功，测试Function Calling是否正常：
+The configuration has been successful, Test if the Function Calling is normal: 
 
 ![image-20240831114920726](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240831114920726.png)
 
-Function Calling正常，现在就可以开始使用Translation AI Agent啦！！
+Function Calling is normal, now you can start using the Translation AI Agent!!
 
-## 源码构建指南🚀
-
-git clone到本地后，如下所示：
+## Source Code Build Guide🚀
+After cloning the repository locally with .git clone, follow the steps as shown below:
 
 ![image-20240830160422435](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830160422435.png)
 
-打开appsettings.example.json文件，如下所示：
+Open the appsettings.example.json file as follows:
 
-![image-20240830160550389](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830160550389.png)
+![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830160422435.png)
 
-智谱AI glm-4-flash免费了，以这个LLM为例，填入API KEY之后，将该文件名字改为appsettings.json或者新建一个appsettings.json，将文件内容复制进去即可：
+Zhipu AI's glm-4-flash is now free. Taking this LLM as an example, after entering the API KEY, rename this file to appsettings.json or create a new appsettings.json and copy the content into it:
 
-![image-20240830162839622](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830162839622.png)
+![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830160422435.png)
 
-IDE：vs2022
-
-.net版本：.net 8
-
-打开解决方案：
+IDE: vs2022
+.NET version: .NET 8
+Open the solution:
 
 ![image-20240830162920242](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830162920242.png)
 
-运行报错：
+Upon running, an error occurs:
 
-![image-20240830163038688](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830163038688.png)
+![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830162920242.png)
 
-右键sppsettings.json文件，点击属性，改为嵌入的资源：
+Right-click on the sppsettings.json file, click on properties, and change it to an embedded resource:
 
-![image-20240830163211284](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830163211284.png)
+![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830162920242.png)
 
-再次运行，通过对话验证是否配置成功：
+Run again and verify the configuration is successful through dialogue:
 
-![image-20240830164734788](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830164734788.png)
+![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830162920242.png)
 
-配置已经成功，测试Function Calling是否正常：
+The configuration is successful.
+Test if Function Calling is working properly:
 
 ![image-20240830164818771](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830164818771.png)
 
-Function Calling正常，现在就可以开始使用Translation AI Agent啦！！
+Function Calling is normal, and now you can start using the Translation AI Agent!
+
