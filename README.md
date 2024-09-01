@@ -16,13 +16,11 @@
 
 ![image-20240830164931643](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830164931643.png)
 
-我现在桌面上没有这个文件
-
 ![image-20240830165003575](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830165003575.png)
 
 创建了这个文件，并将内容写入了：
 
-![image-20240830165110246](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830165110246.png)
+![image-20240901115707800](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240901115707800.png)
 
 整个过程录屏看看：
 
@@ -118,7 +116,7 @@ md文件也是可以的：
 
 如果一个模型返回出错，可以重试，重试不行就可以换个模型试试了，越强的模型，成功的几率越高。
 
-## 快速开始
+## 快速开始🚀
 
 GitHub地址：https://github.com/Ming-jiayou/SimpleTranslationAIAgent
 
@@ -156,7 +154,7 @@ GitHub地址：https://github.com/Ming-jiayou/SimpleTranslationAIAgent
 
 Function Calling正常，现在就可以开始使用Translation AI Agent啦！！
 
-## 源码构建指南
+## 源码构建指南🚀
 
 git clone到本地后，如下所示：
 
@@ -181,8 +179,6 @@ IDE：vs2022
 运行报错：
 
 ![image-20240830163038688](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830163038688.png)
-
-
 
 右键sppsettings.json文件，点击属性，改为嵌入的资源：
 
