@@ -34,8 +34,17 @@ namespace SimpleTranslationAIAgent.Services
             query.Answer = str;
             return query;
         }
-     
-     
+
+        public async IAsyncEnumerable<string> GetAIResponse2(string question)
+        {
+            var query = new Query { Question = question };
+            await foreach (var str in _kernel.InvokePromptStreamingAsync(question))
+            {
+                yield return str.ToString();
+            }           
+        }
+
+
 
         public async Task<string> RunUniversalLLMFunctionCallerSampleAsync(string askText)
         {
