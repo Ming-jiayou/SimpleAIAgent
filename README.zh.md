@@ -1,122 +1,203 @@
 简体中文|[English](./README.md) 
 
-# SimpleTranslationAIAgent
+# Simple AI Agent
 
-## 基于C#与LLM通过简单对话即可实现文件到文件的翻译任务✨
+## 基于C# Semantic Kernel 与 WPF构建的一款AI Agent探索应用✨
 
-该软件是MIT协议完全开源免费的，但是调用LLM的API可能需要费用，但是没关系，赛博菩萨硅基流动与智谱AI等都有免费的模型可调了。
+SimpleAIAgent是基于C# Semantic Kernel 与 WPF构建的一款AI Agent探索应用。主要用于使用国产大语言模型或开源大语言模型构建AI Agent应用的探索学习，希望能够帮助到感兴趣的朋友。
 
-这个Translation AI Agent只是一个简单的AI Agent示例应用，可能很多人都不需要它。
+接下来我想分享一下我的AI Agent应用实践。
 
-开源出来主要是为了感兴趣的同学可以在看源码之后，也可以使用C#+LLM构建出更有意思更能提高自己工作效率的自己专属的AI Agent应用！！
+## 翻译文本并将文本存入文件
 
-可以根据自己构建的AI Agent应用的复杂度，选择合适的模型。当应用比较简单时，可能免费的模型就可以了，但是当应用比较复杂时，可能需要更强的模型才行了。现在各大平台几乎都有送一些token体验，可以先拿这些token试一试。
+第一个例子是翻译文本，并将文本存入指定的文件。
 
-现在glm-4-flash免费了，经过测试可以完成一些简单的AI Agent任务。
+输入如下内容：
 
-首先来一个简单的任务，将内容翻译完之后，自动写入一个文件：
+![image-20240925113714519](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925113714519.png)
 
-![image-20240830164931643](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830164931643.png)
+**执行过程**
 
-![image-20240830165003575](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830165003575.png)
+第一步，LLM判断应该调用的函数与参数如下：
 
-创建了这个文件，并将内容写入了：
+![image-20240925113837225](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925113837225.png)
 
-![image-20240901115707800](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240901115707800.png)
+第二步，LLM帮我们调用这个函数，并返回结果：
 
-整个过程录屏看看：
+![image-20240925113939862](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925113939862.png)
 
-![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/TranslationAIAgent1.gif)
+第三步，LLM再次判断需要调用的函数与参数：
 
-md文件也是可以的：
+![image-20240925114202861](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925114202861.png)
 
-![image-20240830165653037](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830165653037.png)
+第四步，LLM调用这个函数，并返回函数返回值：
 
-![image-20240830165717751](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830165717751.png)
+![image-20240925114250823](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925114250823.png)
 
-录屏看下整个过程：
+第五步，LLM判断任务已经完成，调用结束函数：
 
-![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/TranslationAIAgent2.gif)
+![image-20240925114350284](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925114350284.png)
 
-现在尝试一下更难的任务，将一个文件里的文本取出来翻译之后写入另一个文本。
+第六步，返回最终的回应：
 
-比如我有一个test1.txt文件，如下所示：
+![image-20240925114503461](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925114503461.png)
 
-![image-20240830170813739](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830170813739.png)
+**查看结果**
 
-我想要让Translation AI Agent 帮我翻译成中文，然后存入另一个文件中，如果不存在这个文件就新建一个文件，就可以这么写，只要提供文件路径即可：
+![image-20240925114554332](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925114554332.png)
 
-![image-20240830171542144](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830171542144.png)
+会发现桌面多了一个文件，打开如下所示：
 
-失败了：
+![image-20240925114623548](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925114623548.png)
 
-![image-20240830172736359](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830172736359.png)
+以上AI Agent应用使用glm-4-flash即可实现，当然也可以尝试其他模型，模型越强，成功概率越高。
 
-换成更强的glm-4模型试试：
+## 实现文件到文件的翻译
 
-![image-20240830172933040](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830172933040.png)
+输入：
 
-成功完成这个任务了：
+![image-20240925114853823](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925114853823.png)
 
-![image-20240830173048479](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830173048479.png)
+文件1.txt的内容如下：
 
-现在试一下将这个文件：
+![image-20240925115006964](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925115006964.png)
 
-![image-20240830180636766](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830180636766.png)
+是一段关于WPF的中文描述，现在我想让LLM帮我翻译成英文之后再保存到另一个文件。
 
-翻译成英文之后写入另一个文件：
+同样还是使用免费的glm-4-flash
 
-![image-20240830174100940](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830174100940.png)
+**执行过程**
 
-查看效果：
+第一步，LLM判断应该调用的函数与参数如下：
 
-![image-20240830174157728](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830174157728.png)
+![image-20240925115631597](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925115631597.png)
 
-自动省略了...
+第二步，LLM帮我们调用这个函数，并返回结果：
 
-可以调试看看这个过程。
+![image-20240925120033177](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925120033177.png)
 
-第一步先获取文件的内容：
+第三步，LLM判断任务已经完成，调用结束函数：
 
-![image-20240830175134230](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175134230.png)
+![image-20240925115856804](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925115856804.png)
 
-成功获取到文件内容：
+第四步，返回最终的回应：
 
-![image-20240830175207798](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175207798.png)
+![image-20240925115922792](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925115922792.png)
 
-第二步出错了：
+**查看结果**
 
-![image-20240830175246128](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175246128.png)
+![image-20240925120115600](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925120115600.png)
 
-我该用硅基流动提供的Qwen/Qwen2-72B-Instruct再试试：
+![image-20240925120135716](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925120135716.png)
 
-![image-20240830175603881](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175603881.png)
+## 实现要点
 
-现在没错了。
+大家可能会注意到实现的要点其实就是要让LLM自动调用函数，也就是实现自动函数调用的功能。
 
-成功获取翻译结果：
+之后要做的就是根据你想让LLM自动做的事去写插件，然后导入这个插件罢了。
 
-![image-20240830175648519](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175648519.png)
+插件中函数最好不要太多，太多模型能力弱的就会乱调用。根据你的需求，实现不同人物导入不同的插件比较好。
 
-第三步，将翻译之后的结果写入文件：
+插件可以这样写，以上面的翻译插件为例：
 
-![image-20240830175745941](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175745941.png)
+```csharp
+#pragma warning disable SKEXP0050
+    internal class TranslationFunctions
+    {
+        private readonly Kernel _kernel;
+        public TranslationFunctions()
+        {
+            var handler = new OpenAIHttpClientHandler();
+            var builder = Kernel.CreateBuilder()
+            .AddOpenAIChatCompletion(
+               modelId: ChatAIOption.ChatModel,
+               apiKey: ChatAIOption.Key,
+               httpClient: new HttpClient(handler));
+            _kernel = builder.Build();
+        }
+        [KernelFunction, Description("选择用户想要的语言翻译文本")]
+        public async Task<string> TranslateText(
+            [Description("要翻译的文本")] string text,
+            [Description("要翻译成的语言，从'中文'、'英文'中选一个")] string language
+ )
+        {
+            string skPrompt = """
+                            {{$input}}
 
-已成功写入：
+                            将上面的文本翻译成{{$language}}，无需任何其他内容
+                            """;
+            var result = await _kernel.InvokePromptAsync(skPrompt, new() { ["input"] = text, ["language"] = language });
+            var str = result.ToString();
+            return str;
+        }
 
-![image-20240830175809502](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175809502.png)
+        [KernelFunction, Description("实现文件到文件的翻译")]
+        public async Task<string> TranslateTextFileToFile(
+           [Description("要翻译的文件路径")] string path1,
+           [Description("保存翻译结果的文件路径")] string path2,
+           [Description("要翻译成的语言，从'中文'、'英文'中选一个")] string language
+)
+        {
+            string fileContent = File.ReadAllText(path1);
+            var lines = TextChunker.SplitPlainTextLines(fileContent,100);
+            var paragraphs = TextChunker.SplitPlainTextParagraphs(lines, 1000);
+            string result = "";
+            string skPrompt = """
+                            {{$input}}
 
-第四步，返回完成信息：
+                            将上面的文本翻译成{{$language}}，无需任何其他内容
+                            """;
+            foreach (var paragraph in paragraphs)
+            {
+                var result1 = await _kernel.InvokePromptAsync(skPrompt, new() { ["input"] = paragraph, ["language"] = language });
+                result += result1.ToString() + "\r\n";
+            }        
+           
+            var str = result.ToString();
 
-![image-20240830175845567](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175845567.png)
+            // 使用 StreamWriter 将文本写入文件
+            using (StreamWriter writer = new StreamWriter(path2, true))
+            {
+                writer.WriteLine(str);
+            }
 
-![image-20240830175910947](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830175910947.png)
+            string message = $"已成功实现文件{path1}到文件{path2}的翻译";
+            return message;
+        }
 
-查看效果：
+        [KernelFunction, Description("将文本保存到文件")]
+        public string SaveTextToFile(
+           [Description("要保存的文本")] string text,
+           [Description("要保存到的文件路径")] string filePath
+)
+        {
+            // 使用 StreamWriter 将文本写入文件
+            using (StreamWriter writer = new StreamWriter(filePath, true))
+            {
+                writer.WriteLine(text);
+            }
+            return "已成功写入文件";
+        }
 
-![image-20240830180006034](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830180006034.png)
+        [KernelFunction, Description("从文件中读取文本")]
+        public string GetTextFromFile(
+           [Description("要读取的文件路径")] string filePath
+)
+        {
+            string fileContent = File.ReadAllText(filePath);
+            return fileContent;
+        }
 
-如果一个模型返回出错，可以重试，重试不行就可以换个模型试试了，越强的模型，成功的几率越高。
+    }
+```
+
+就是加上了一些描述用于帮助LLM理解函数的用途罢了，相信对程序员朋友来说不是什么问题，现在就可以动手构建自己的AI Agent应用了。
+
+希望这次的分享对使用LLM构建AI Agent应用感兴趣的朋友有所帮助。
+
+对这个应用感兴趣的朋友，拉一下代码，将appsettings.example.json改为appsettings.json，填入你的API Key与模型名或者使用Ollma填入地址，填入模型名即可快速体验。
+
+GitHub地址：https://github.com/Ming-jiayou/SimpleAIAgent
 
 ## 快速开始🚀
 
@@ -194,4 +275,4 @@ IDE：vs2022
 
 ![image-20240830164818771](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830164818771.png)
 
-Function Calling正常，现在就可以开始使用Translation AI Agent啦！！
+Function Calling正常，现在就可以开始使用Simple AI Agent啦！！

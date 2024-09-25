@@ -2,49 +2,202 @@
 
 # SimpleTranslationAIAgent
 
-## Based on C# and LLM, a file-to-file translation task can be achieved through simple dialogue.✨
+## An AI Agent exploration application based on C# Semantic Kernel and WPF ✨
 
-This software is completely open-source and free under the MIT license. However, calling the LLM API may incur costs. But don't worry, there are now free models available for use, such as those from SiliconCloud, and Zhipu AI.
+SimpleAIAgent is an AI Agent exploration application built on C# Semantic Kernel and WPF. It is primarily used for exploring and learning how to build AI Agent applications using domestic large language models or open-source large language models, with the hope of assisting interested friends.
 
-This Translation AI Agent is just a simple example application of an AI Agent, and many people may not need it. The main reason for open-sourcing it is to allow those who are interested to study the source code and use C# plus LLM to build their own unique AI Agent applications that are more interesting and can improve their own work efficiency!!
+Next, I would like to share my practical experience in developing AI Agent applications.
 
-You can choose an appropriate model based on the complexity of your self-built AI Agent application. For simpler applications, free models may suffice, but for more complex ones, you might require a stronger model. Nowadays, almost all platforms offer some tokens for free trial, so you can give them a try first.
+## Translate Text and Save It to a File
 
-Now GLM-4-Flash is free, and after testing, it can complete some simple AI Agent tasks.
+The first example is translating text and saving it to a specified file.
 
-First, a simple task: after translating the content, automatically write it into a file:
+Enter the following content:
 
-![image-20240830164931643](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830164931643.png)
+![image-20240925113714519](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925113714519.png)
 
-Created this file and wrote the content into it:
+**Execution Process**
 
-![image-20240901115707800](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240901115707800.png)
+Step 1: The LLM determines the function and parameters to be called as follows:
 
-Check the entire recording of the screen:
+![image-20240925113837225](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925113837225.png)
 
-![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/TranslationAIAgent1.gif)
+Step 2: The LLM assists us in calling this function and returns the result:
 
-MD files are also acceptable:
+![image-20240925113939862](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925113939862.png)
 
-![image-20240830165653037](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830165653037.png)
+Step 3: The LLM re-evaluates the functions and parameters that need to be invoked:
 
-![image-20240830165717751](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830165717751.png)
+![image-20240925114202861](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925114202861.png)
 
-Capture the entire process on screen:
+Step 4: The LLM calls this function and returns the function's return value.
 
-![](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/TranslationAIAgent2.gif)
+![image-20240925114250823](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925114250823.png)
 
-For instance, I have a file named test1.txt as follows:
+Step 5: The LLM determines that the task is complete and calls the end function:
 
-![image-20240830170813739](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830170813739.png)
+![image-20240925114350284](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925114350284.png)
 
-Translate the text above into English and save it to another file. If the file does not exist, create a new one.
+Step 6: Return the final response:
 
-![image-20240830171542144](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830171542144.png)
+![image-20240925114503461](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925114503461.png)
 
-The task has been successfully completed:
+**View Results**
 
-![image-20240830173048479](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240830173048479.png)
+![image-20240925114554332](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925114554332.png)
+
+You will find that a new file has appeared on the desktop, opened as follows:
+
+![image-20240925114623548](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925114623548.png)
+
+The above AI Agent application can be implemented using glm-4-flash, although other models can also be attempted. The stronger the model, the higher the probability of success.
+
+## Implementing Translation from File to File  
+
+Input:  
+
+![image-20240925114853823](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925114853823.png)
+
+The content of file1.txt is as follows:
+
+![image-20240925115006964](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925115006964.png)
+
+is a description about WPF in Chinese, and now I want the LLM to help me translate it into English and then save it to another file.
+
+Still using the free glm-4-flash.
+
+**Execution Process**
+
+Step 1: The LLM determines the function to be called and its parameters as follows:
+
+![image-20240925115631597](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925115631597.png)
+
+Step 2: Have the LLM call this function for us and return the result:
+
+![image-20240925120033177](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925120033177.png)
+
+Step 3: The LLM determines that the task is complete and calls the end function.
+
+![image-20240925115856804](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925115856804.png)
+
+Step 4: Return the final response:
+
+![image-20240925115922792](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925115922792.png)
+
+**View Results**
+
+![image-20240925120115600](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925120115600.png)
+
+![image-20240925120135716](https://mingupupup.oss-cn-wuhan-lr.aliyuncs.com/imgs/image-20240925120135716.png)
+
+## Key Points for Implementation
+
+You may notice that the key to implementation is to enable the LLM to automatically call functions, which is essentially achieving automatic function calling.
+
+After that, the task is to write plugins based on what you want the LLM to automate, and then import these plugins accordingly.
+
+It's best to keep the number of functions in the plugin minimal, as too many functions can lead to confusion and incorrect calls for models with weaker capabilities. Depending on your specific needs, it's advisable to implement different characters with different plugins.
+
+Plugins can be written as follows, using the translation plugin as an example:
+
+```csharp
+#pragma warning disable SKEXP0050
+    internal class TranslationFunctions
+    {
+        private readonly Kernel _kernel;
+        public TranslationFunctions()
+        {
+            var handler = new OpenAIHttpClientHandler();
+            var builder = Kernel.CreateBuilder()
+            .AddOpenAIChatCompletion(
+               modelId: ChatAIOption.ChatModel,
+               apiKey: ChatAIOption.Key,
+               httpClient: new HttpClient(handler));
+            _kernel = builder.Build();
+        }
+        [KernelFunction, Description("选择用户想要的语言翻译文本")]
+        public async Task<string> TranslateText(
+            [Description("要翻译的文本")] string text,
+            [Description("要翻译成的语言，从'中文'、'英文'中选一个")] string language
+ )
+        {
+            string skPrompt = """
+                            {{$input}}
+
+                            将上面的文本翻译成{{$language}}，无需任何其他内容
+                            """;
+            var result = await _kernel.InvokePromptAsync(skPrompt, new() { ["input"] = text, ["language"] = language });
+            var str = result.ToString();
+            return str;
+        }
+
+        [KernelFunction, Description("实现文件到文件的翻译")]
+        public async Task<string> TranslateTextFileToFile(
+           [Description("要翻译的文件路径")] string path1,
+           [Description("保存翻译结果的文件路径")] string path2,
+           [Description("要翻译成的语言，从'中文'、'英文'中选一个")] string language
+)
+        {
+            string fileContent = File.ReadAllText(path1);
+            var lines = TextChunker.SplitPlainTextLines(fileContent,100);
+            var paragraphs = TextChunker.SplitPlainTextParagraphs(lines, 1000);
+            string result = "";
+            string skPrompt = """
+                            {{$input}}
+
+                            将上面的文本翻译成{{$language}}，无需任何其他内容
+                            """;
+            foreach (var paragraph in paragraphs)
+            {
+                var result1 = await _kernel.InvokePromptAsync(skPrompt, new() { ["input"] = paragraph, ["language"] = language });
+                result += result1.ToString() + "\r\n";
+            }        
+           
+            var str = result.ToString();
+
+            // 使用 StreamWriter 将文本写入文件
+            using (StreamWriter writer = new StreamWriter(path2, true))
+            {
+                writer.WriteLine(str);
+            }
+
+            string message = $"已成功实现文件{path1}到文件{path2}的翻译";
+            return message;
+        }
+
+        [KernelFunction, Description("将文本保存到文件")]
+        public string SaveTextToFile(
+           [Description("要保存的文本")] string text,
+           [Description("要保存到的文件路径")] string filePath
+)
+        {
+            // 使用 StreamWriter 将文本写入文件
+            using (StreamWriter writer = new StreamWriter(filePath, true))
+            {
+                writer.WriteLine(text);
+            }
+            return "已成功写入文件";
+        }
+
+        [KernelFunction, Description("从文件中读取文本")]
+        public string GetTextFromFile(
+           [Description("要读取的文件路径")] string filePath
+)
+        {
+            string fileContent = File.ReadAllText(filePath);
+            return fileContent;
+        }
+
+    }
+```
+
+It's just adding some descriptions to help the LLM understand the purpose of the function, which shouldn't be a problem for programmers. Now you can start building your own AI Agent application.
+
+I hope this share is helpful for those interested in building AI Agent applications using LLM.
+
+For those interested in this application, pull the code, rename `appsettings.example.json` to `appsettings.json`, and fill in your API Key and model name, or use Ollma to fill in the address and model name for a quick experience.
+
+GitHub link: https://github.com/Ming-jiayou/SimpleAIAgent
 
 ## Quick Start🚀
 
